@@ -31,6 +31,10 @@ st.markdown(
 def carregar_dados():
     df = pd.read_excel("VacinasHum.xlsx", sheet_name="VACINAS")
     df = df.fillna("")
+    
+    # Remover colunas sem nome (como Unnamed: 0, etc.)
+    df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
+    
     return df
 
 df = carregar_dados()
@@ -63,13 +67,8 @@ df_filtrado = df[
 ]
 
 # Remover colunas da exibição final
-colunas_ocultas = ["", "NU_CLASSIFICAÇÃO", "NM_CLASSIFICAÇÃO"]
+colunas_ocultas = ["NU_CLASSIFICAÇÃO", "NM_CLASSIFICAÇÃO"]
 df_exibicao = df_filtrado.drop(columns=[col for col in colunas_ocultas if col in df_filtrado.columns])
-
-# Remover colunas sem nome
-    df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
-
-    return df
 
 # KPIs simples
 st.subheader("📊 INFORMAÇÕES")
