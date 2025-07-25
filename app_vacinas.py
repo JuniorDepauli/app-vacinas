@@ -57,6 +57,11 @@ df_filtrado = df[
     (df["NM_CLASSIFICAÇÃO"].isin(filtro_class)) &
     (df["VACINA"].isin(filtro_vacina))
 ]
+
+# Remover colunas indesejadas da exibição
+colunas_ocultas = ["Indice", "NU_CLASSIFICAÇÃO", "NM_CLASSIFICAÇÃO"]
+df_exibicao = df_filtrado.drop(columns=[col for col in colunas_ocultas if col in df_filtrado.columns])
+
 # KPIs simples
 st.subheader("📊 INFORMAÇÕES")
 col1, col2 = st.columns(2)
