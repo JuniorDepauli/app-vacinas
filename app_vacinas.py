@@ -66,6 +66,11 @@ df_filtrado = df[
 colunas_ocultas = ["", "NU_CLASSIFICAÇÃO", "NM_CLASSIFICAÇÃO"]
 df_exibicao = df_filtrado.drop(columns=[col for col in colunas_ocultas if col in df_filtrado.columns])
 
+# Remover colunas sem nome
+    df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
+
+    return df
+
 # KPIs simples
 st.subheader("📊 INFORMAÇÕES")
 col1, col2 = st.columns(2)
