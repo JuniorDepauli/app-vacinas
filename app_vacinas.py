@@ -40,12 +40,22 @@ st.title("💉 Consulta Interativa - Vacinas para Humanos")
 
 # Filtros
 st.sidebar.header("🔍 Filtros")
-classificacoes = df["NM_CLASSIFICAÇÃO"].unique()
-vacinas = df["VACINA"].unique()
 
-filtro_class = st.sidebar.multiselect("Filtrar por Classificação:", classificacoes, default=classificacoes)
-filtro_vacina = st.sidebar.multiselect("Filtrar por Vacina:", vacinas, default=vacinas)
+# Filtro por Classificação
+st.sidebar.subheader("Filtrar por Classificação:")
+filtro_class = []
+for classificacao in df["NM_CLASSIFICAÇÃO"].unique():
+    if st.sidebar.checkbox(classificacao, value=True):  # value=True para selecionar por padrão
+        filtro_class.append(classificacao)
 
+# Filtro por Vacina
+st.sidebar.subheader("Filtrar por Vacina:")
+filtro_vacina = []
+for vacina in df["VACINA"].unique():
+    if st.sidebar.checkbox(vacina, value=True):  # value=True para selecionar por padrão
+        filtro_vacina.append(vacina)
+
+# Aplicar filtros
 df_filtrado = df[
     (df["NM_CLASSIFICAÇÃO"].isin(filtro_class)) &
     (df["VACINA"].isin(filtro_vacina))
