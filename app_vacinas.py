@@ -63,7 +63,7 @@ df_filtrado = df[
 ]
 
 # Remover colunas da exibição final
-colunas_ocultas = ["Indice", "NU_CLASSIFICAÇÃO", "NM_CLASSIFICAÇÃO"]
+colunas_ocultas = ["", "NU_CLASSIFICAÇÃO", "NM_CLASSIFICAÇÃO"]
 df_exibicao = df_filtrado.drop(columns=[col for col in colunas_ocultas if col in df_filtrado.columns])
 
 # KPIs simples
