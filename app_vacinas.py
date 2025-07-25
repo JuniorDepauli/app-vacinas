@@ -5,7 +5,7 @@ import pandas as pd
 
 # Configuração do visual do app
 st.set_page_config(
-    page_title="Vacinas para Gestantes",
+    page_title="Vacinas para Humanos",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -36,7 +36,7 @@ def carregar_dados():
 df = carregar_dados()
 
 # Título
-st.title("💉 Consulta Interativa - Vacinas para Gestantes")
+st.title("💉 Consulta Interativa - Vacinas para Humanos")
 
 # Filtros
 st.sidebar.header("🔍 Filtros")
@@ -52,10 +52,10 @@ df_filtrado = df[
 ]
 
 # KPIs simples
-st.subheader("📊 Resumo")
+st.subheader("📊 INFORMAÇÕES")
 col1, col2 = st.columns(2)
-col1.metric("Total de Vacinas Listadas", len(df_filtrado))
-col2.metric("Tipos de Classificação", df_filtrado["NM_CLASSIFICAÇÃO"].nunique())
+col1.metric("Vacinas Listadas", len(df_filtrado))
+col2.metric("Classificação", df_filtrado["NM_CLASSIFICAÇÃO"].nunique())
 
 # Tabela de visualização
 st.subheader("📋 Detalhamento das Vacinas")
@@ -66,4 +66,4 @@ st.dataframe(df_filtrado.style.set_properties(**{
 
 # Rodapé
 st.markdown("---")
-st.caption("Desenvolvido por Juninho • Dados informativos baseados na planilha fornecida.")
+st.caption("Desenvolvido por Juninho • Dados informativos baseados no Calendário Nacional de Vacinação SUS.")
