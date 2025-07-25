@@ -30,7 +30,7 @@ st.markdown(
 @st.cache_data
 def carregar_dados():
     df = pd.read_excel("VacinasHum.xlsx", sheet_name="VACINAS")
-    df = df.fillna("Não informado")
+    df = df.fillna("")
     return df
 
 df = carregar_dados()
@@ -72,4 +72,4 @@ st.dataframe(df_filtrado.style.set_properties(**{
 
 # Rodapé
 st.markdown("---")
-st.caption("Desenvolvido por Juninho • Dados informativos baseados no Calendário Nacional de Vacinação SUS.")
+st.caption("Desenvolvido por Junior Depauli • Dados informativos baseados no Calendário Nacional de Vacinação - https://www.gov.br/saude/pt-br/vacinacao/calendario.")
