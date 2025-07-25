@@ -48,9 +48,13 @@ for classificacao in df["NM_CLASSIFICAÇÃO"].unique():
     if st.sidebar.checkbox(classificacao, value=True):
         filtro_class.append(classificacao)
 
-# Filtro por Vacina (retornado ao multiselect original)
+# Filtro por Vacina
 st.sidebar.subheader("Filtrar por Vacina:")
-filtro_vacina = st.sidebar.multiselect("Filtrar por Vacina:", df["VACINA"].unique(), default=df["VACINA"].unique())
+filtro_vacina = st.sidebar.multiselect(
+    "Filtrar por Vacina:", 
+    df["VACINA"].unique(), 
+    default=df["VACINA"].unique()
+)
 
 # Aplicar filtros
 df_filtrado = df[
@@ -58,7 +62,7 @@ df_filtrado = df[
     (df["VACINA"].isin(filtro_vacina))
 ]
 
-# Remover colunas indesejadas da exibição
+# Remover colunas da exibição final
 colunas_ocultas = ["Indice", "NU_CLASSIFICAÇÃO", "NM_CLASSIFICAÇÃO"]
 df_exibicao = df_filtrado.drop(columns=[col for col in colunas_ocultas if col in df_filtrado.columns])
 
@@ -66,11 +70,11 @@ df_exibicao = df_filtrado.drop(columns=[col for col in colunas_ocultas if col in
 st.subheader("📊 INFORMAÇÕES")
 col1, col2 = st.columns(2)
 col1.metric("Vacinas Listadas", len(df_filtrado))
-col2.metric("Classificação", df_filtrado["NM_CLASSIFICAÇÃO"].nunique())
+col2.metric("Classificações", df_filtrado["NM_CLASSIFICAÇÃO"].nunique())
 
-# Tabela de visualização
+# Tabela de visualização (agora com colunas ocultas)
 st.subheader("📋 Detalhamento das Vacinas")
-st.dataframe(df_filtrado.style.set_properties(**{
+st.dataframe(df_exibicao.style.set_properties(**{
     'background-color': '#1E1E1E',
     'color': 'white'
 }), use_container_width=True)
