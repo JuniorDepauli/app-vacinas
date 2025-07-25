@@ -45,22 +45,18 @@ st.sidebar.header("🔍 Filtros")
 st.sidebar.subheader("Filtrar por Classificação:")
 filtro_class = []
 for classificacao in df["NM_CLASSIFICAÇÃO"].unique():
-    if st.sidebar.checkbox(classificacao, value=True):  # value=True para selecionar por padrão
+    if st.sidebar.checkbox(classificacao, value=True):
         filtro_class.append(classificacao)
 
-# Filtro por Vacina
+# Filtro por Vacina (retornado ao multiselect original)
 st.sidebar.subheader("Filtrar por Vacina:")
-filtro_vacina = []
-for vacina in df["VACINA"].unique():
-    if st.sidebar.checkbox(vacina, value=True):  # value=True para selecionar por padrão
-        filtro_vacina.append(vacina)
+filtro_vacina = st.sidebar.multiselect("Filtrar por Vacina:", df["VACINA"].unique(), default=df["VACINA"].unique())
 
 # Aplicar filtros
 df_filtrado = df[
     (df["NM_CLASSIFICAÇÃO"].isin(filtro_class)) &
     (df["VACINA"].isin(filtro_vacina))
 ]
-
 # KPIs simples
 st.subheader("📊 INFORMAÇÕES")
 col1, col2 = st.columns(2)
