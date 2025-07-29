@@ -5,7 +5,7 @@ import pandas as pd
 
 # Configuração do visual do app
 st.set_page_config(
-    page_title="Vacinas para Humanos",
+    page_title="Calendário de Vacinação",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -40,7 +40,7 @@ def carregar_dados():
 df = carregar_dados()
 
 # Título
-st.title("💉 Consulta Interativa - Vacinas para Humanos")
+st.title("💉 Consulta Interativa - Calendário de Vacinação")
 
 # Filtros
 st.sidebar.header("🔍 Filtros")
@@ -85,4 +85,4 @@ st.dataframe(df_exibicao.style.set_properties(**{
 
 # Rodapé
 st.markdown("---")
-st.caption("Desenvolvido por Junior Depauli • Dados informativos baseados no Calendário Nacional de Vacinação - https://www.gov.br/saude/pt-br/vacinacao/calendario.")
+st.caption("Desenvolvido por Junior Depauli • Dados informativos baseados no Calendário de Vacinação - https://www.gov.br/saude/pt-br/vacinacao/calendario.")
