@@ -1,2 +1,2 @@
 # app-vacinas
-Visualizador de vacinas por faixa etária.
+Calendário de vacinas por faixa etária.
